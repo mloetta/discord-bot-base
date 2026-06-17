@@ -1,0 +1,44 @@
+{
+  "name": "pocket-tool",
+  "module": "src/bot/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "if exist dist rmdir /s /q dist && tsc",
+    "start": "node dist/bot/index.js",
+    "register": "node dist/bot/register.js",
+    "format": "prettier . --write"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.7.1",
+    "@types/node": "^25.6.0",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@discordjs/collection": "^2.1.1",
+    "@discordjs/core": "^2.4.0",
+    "@discordjs/opus": "^0.10.0",
+    "@discordjs/rest": "^2.6.1",
+    "@discordjs/voice": "^0.19.2",
+    "@discordjs/ws": "^2.0.4",
+    "@elevenlabs/elevenlabs-js": "^2.45.0",
+    "@supabase/supabase-js": "^2.104.1",
+    "bufferutil": "^4.1.0",
+    "i18next": "^26.3.1",
+    "i18next-fs-backend": "^2.6.6",
+    "luxon": "^3.7.2",
+    "mathjs": "^15.2.0",
+    "node-cron": "^4.2.1",
+    "openai": "^6.38.0",
+    "redis": "^6.0.0",
+    "sharp": "^0.34.5",
+    "zlib-sync": "^0.1.10"
+  },
+  "allowScripts": {
+    "bufferutil@4.1.0": true,
+    "sharp@0.34.5": true,
+    "@discordjs/opus@0.10.0": true,
+    "zlib-sync@0.1.10": true
+  }
+}
