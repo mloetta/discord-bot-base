@@ -1,15 +1,12 @@
 import {
-  ActivityType,
   ApplicationCommandOptionType,
   ApplicationCommandType,
   GatewayDispatchEvents,
-  PresenceUpdateStatus,
   Snowflake,
 } from '@discordjs/core';
 import { BooleanChatInputOption, GatewayEvent, NonPrimaryEntryPointCommand } from '../../types/types.js';
 import env from '../../utils/env.js';
 import { client, localizeCommand } from '../index.js';
-import { startReminderCron } from '../../crons/reminder.js';
 import createGatewayEvent from '../../helpers/event.js';
 
 createGatewayEvent({
@@ -17,21 +14,6 @@ createGatewayEvent({
   async run(payload, api) {
     const shardId = payload.shard![0];
     console.log(`Shard #${shardId} is ready!`);
-
-    void startReminderCron(api);
-
-    await client.updatePresence(shardId, {
-      since: null,
-      activities: [
-        {
-          type: ActivityType.Custom,
-          name: 'shardId',
-          state: `You're on shard #${shardId}!`,
-        },
-      ],
-      status: PresenceUpdateStatus.Online,
-      afk: false,
-    });
 
     if (env.get('register_commands').toBoolean() === true) {
       for (const command of client.commands.values()) {
