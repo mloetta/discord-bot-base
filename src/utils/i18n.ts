@@ -1,4 +1,4 @@
-/* i might make the bot support multiple languages at some point
+/* If you want the bot to support multiple languages, feel free to keep this file. Otherwise, you can safely remove it.
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import path from 'path';

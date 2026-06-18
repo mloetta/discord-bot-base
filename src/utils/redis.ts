@@ -1,3 +1,4 @@
+/* if you want to use redis, feel free to keep this file. Otherwise, you can safely remove it.
 import { createClient } from 'redis';
 import env from './env.js';
 
@@ -13,3 +14,4 @@ export const redis = createClient({
 redis.on('error', (e) => console.log('Redis Client Error', e));
 
 await redis.connect();
+*/

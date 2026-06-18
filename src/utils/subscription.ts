@@ -12,7 +12,7 @@ import {
 import { Readable } from 'stream';
 import { promisify } from 'node:util';
 import { Collection } from '@discordjs/collection';
-import { Track } from '../types/types.js';
+import type { Track } from '../types/types.js';
 
 const wait = promisify(setTimeout);
 
@@ -39,6 +39,7 @@ export class Subscription {
           }
         } else if (this.voiceConnection.rejoinAttempts < 5) {
           await wait((this.voiceConnection.rejoinAttempts + 1) * 5_000);
+
           this.voiceConnection.rejoin();
         } else {
           this.voiceConnection.destroy();
@@ -66,6 +67,7 @@ export class Subscription {
       if (newState.status === AudioPlayerStatus.Idle && oldState.status !== AudioPlayerStatus.Idle) {
         this.currentTrack?.onFinish?.();
         this.currentTrack = null;
+
         void this.processQueue();
       }
     });
@@ -77,15 +79,18 @@ export class Subscription {
     voiceConnection.subscribe(this.audioPlayer);
   }
 
-  public enqueue(track: TTSTrack) {
+  public enqueue(track: Track) {
     this.queue.push(track);
+
     void this.processQueue();
   }
 
   public stop() {
     this.queueLock = true;
     this.queue = [];
+
     this.audioPlayer.stop(true);
+
     if (this.timeout) {
       clearTimeout(this.timeout);
       this.timeout = null;
@@ -102,14 +107,19 @@ export class Subscription {
 
     try {
       this.currentTrack = nextTrack;
+
       const resource = createAudioResource(Readable.from(nextTrack.buffer), {
         inputType: StreamType.OggOpus,
       });
+
       this.audioPlayer.play(resource);
+
       this.queueLock = false;
     } catch (error) {
       nextTrack.onError?.(error as Error);
+
       this.queueLock = false;
+
       return this.processQueue();
     }
   }

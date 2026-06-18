@@ -1,6 +1,6 @@
 {
   "name": "discord-bot-base",
-  "module": "src/bot/index.ts",
+  "module": "dist/bot/index.js",
   "type": "module",
   "private": true,
   "scripts": {

@@ -1,11 +1,11 @@
 import {
-  APIMessageComponentEmoji,
   ApplicationCommandType,
   ApplicationIntegrationType,
   ButtonStyle,
   ComponentType,
   InteractionContextType,
   MessageFlags,
+  type APIMessageComponentEmoji,
 } from '@discordjs/core';
 import { TimestampStyle } from '../../../types/types.js';
 import { hyperlink, timestamp } from '../../../utils/markdown.js';
@@ -69,7 +69,7 @@ createApplicationCommand({
                   type: ComponentType.Button,
                   label: 'Support Server',
                   emoji: toEmoji('discord') as APIMessageComponentEmoji,
-                  url: 'https://discord.gg/EEAchFSWpr',
+                  url: 'your support server invite here',
                   style: ButtonStyle.Link,
                 },
               ],

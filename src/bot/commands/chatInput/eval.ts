@@ -24,7 +24,7 @@ createApplicationCommand({
       required: true,
     },
   ],
-  guild: '1457032144349302900',
+  guild: 'your dev guild id here',
   dev: true,
   acknowledge: true,
   async run(interaction, options, api) {
